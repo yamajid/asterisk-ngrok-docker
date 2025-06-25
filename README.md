@@ -25,7 +25,7 @@ A simple Docker-based Asterisk PBX setup with ngrok tunneling for public SIP acc
 
 1. **Clone this repository:**
    ```bash
-   git clone <repository-url>
+   git clone https://github.com/yamajid/asterisk-ngrok-docker
    cd asterisk-ngrok-docker
    ```
 
