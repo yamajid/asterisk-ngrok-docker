@@ -1,0 +1,30 @@
+services:
+  asterisk:
+    image: mlan/asterisk:latest
+    container_name: asterisk
+    restart: unless-stopped
+    ports:
+      - "5060:5060/tcp"
+      - "5060:5060/udp"
+      - "10000-10099:10000-10099/udp"
+    volumes:
+      - ./asterisk:/etc/asterisk
+    networks:
+      - pbx-net
+
+  ngrok:
+    image: ngrok/ngrok:latest
+    container_name: ngrok
+    restart: unless-stopped
+    volumes:
+      - ./ngrok/ngrok.yml:/ngrok.yml
+    environment:
+      # Set your ngrok authtoken here (https://dashboard.ngrok.com/get-started/your-authtoken)
+      - NGROK_AUTHTOKEN=${NGROK_AUTHTOKEN}
+    command: tcp asterisk:5060
+    networks:
+      - pbx-net
+
+networks:
+  pbx-net:
+    driver: bridge

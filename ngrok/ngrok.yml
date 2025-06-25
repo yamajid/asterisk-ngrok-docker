@@ -1,0 +1,6 @@
+version: "3"
+
+tunnels:
+  your_tunnel:
+    addr: 127.0.0.1:5060
+    proto: tcp
